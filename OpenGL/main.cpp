@@ -261,6 +261,13 @@ int main() {
 			shouldSpin = true;
 		}
 
+		if (input->IsKeyDown(GLFW_KEY_R)) {
+			shouldSpin = false;
+			for (Node* node : nodes) {
+				node->Reset();
+			}
+		}
+
 		// Get elapsed time
 		duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 

@@ -17,7 +17,7 @@ private:
 	glm::vec3 position;
 	glm::vec3 eulerAngles;
 	glm::vec3 scale;
-
+	glm::vec3 startPosition;
 	glm::mat4 worldMatrix;
 	bool spinning = false;
 public:
@@ -49,5 +49,6 @@ public:
 	void SetSpinning(bool);
 
 	bool isSpinning();
+	void Reset();
 };
 

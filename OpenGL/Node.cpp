@@ -52,7 +52,7 @@ void Node::Spin()
 
 void Node::Reset()
 {
-	myGameEntity->SetSpinning(false);
+	myGameEntity->Reset();
 }
 
 void Node::Render(Camera* myCamera)
