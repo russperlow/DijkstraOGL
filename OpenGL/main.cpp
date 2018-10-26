@@ -21,6 +21,9 @@
 #include "Shapes.h"
 #include "Node.h"
 
+#include <cstdlib>
+#include <ctime>
+
 int main() {
 
 	//init GLFW
@@ -112,10 +115,52 @@ int main() {
 	std::vector<Node*> nodes;
 	int cubeCount = 8;
 
+	int w = 10;
+	int h = 5;
+	srand(time(NULL));
+
 	// Create 8 cubes, meshes, materials & game entites
 	for (int i = 0; i < cubeCount; i++) {
 		float x = i;
 		float y = i;
+
+		// Set the x values based on their position in the list
+		if (i == 0) {
+			x = -w;
+		}
+		else if (i == cubeCount - 1) {
+			x = w;
+		}
+		else if (i == cubeCount / 2 || i == (cubeCount / 2) - 1) {
+			x = 0;
+		}
+		else if (i < cubeCount / 2) {
+			x = -w / 2;
+		}
+		else {
+			x = w / 2;
+		}
+
+		// Set the y values based on their position in the list
+		if (i == 0 || i == (cubeCount / 2) - 1 || i == cubeCount - 1) {
+			y = 0;
+		}
+		else if (i % 2 == 0) {
+			y = -h;
+		}
+		else {
+			y = h;
+		}
+
+		// Slight random devation so the graph isn't always the same
+		float randX = (rand() % 10);
+		float randY = (rand() % 10);
+		randX /= 10;
+		randY /= 10;
+		std::cout << "RandX: " << randX << " RandY: " << randY << std::endl;
+		x += randX;
+		y += randY;
+
 		Node* node = new Node(shaderProgram, x, y, i);
 		nodes.push_back(node);
 	}
@@ -125,10 +170,10 @@ int main() {
 	nodes[1]->setNeighbors(std::vector<Node*>{nodes[0], nodes[3], nodes[5]});
 	nodes[2]->setNeighbors(std::vector<Node*>{nodes[0], nodes[3], nodes[4]});
 	nodes[3]->setNeighbors(std::vector<Node*>{nodes[0], nodes[1], nodes[2], nodes[4], nodes[5], nodes[6]});
-	nodes[4]->setNeighbors(std::vector<Node*>{nodes[2], nodes[3], nodes[5]});
+	nodes[4]->setNeighbors(std::vector<Node*>{nodes[2], nodes[3], nodes[6]});
 	nodes[5]->setNeighbors(std::vector<Node*>{nodes[1], nodes[3], nodes[6], nodes[7]});
 	nodes[6]->setNeighbors(std::vector<Node*>{nodes[3], nodes[4], nodes[5], nodes[7]});
-	nodes[7]->setNeighbors(std::vector<Node*>{nodes[5], nodes[7]});
+	nodes[7]->setNeighbors(std::vector<Node*>{nodes[5], nodes[6]});
 	
 	// Our camera
 	Camera* myCamera = new Camera(

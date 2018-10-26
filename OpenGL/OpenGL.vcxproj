@@ -121,6 +121,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Dijkstras.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -132,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Dijkstras.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Material.h" />

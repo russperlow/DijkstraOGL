@@ -4,7 +4,7 @@
 #include "Material.h"
 #include "GameEntity.h"
 #include "Shapes.h"
-#include <vector>
+#include "stdafx.h"
 
 class Node
 {

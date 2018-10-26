@@ -1,10 +1,15 @@
-﻿  Node.cpp
-c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\crtdbg.h(302): warning C4005: '_malloca': macro redefinition
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\malloc.h(121): note: see previous definition of '_malloca'
-  main.cpp
-c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(117): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(118): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  main.cpp
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(120): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(124): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(125): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(129): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(132): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(138): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(141): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(149): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(152): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(156): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\admin\documents\dsa2\dijkstraogl\opengl\main.cpp(157): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
 glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\admin\Documents\DSA2\DijkstraOGL\Debug\vc120.pdb'; linking object as if no debug info
