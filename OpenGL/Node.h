@@ -26,6 +26,8 @@ public:
 	float getX();
 	float getY();
 	int getId();
+
+	bool isSpinning();
 private:
 	Mesh* myMesh;
 	Material* myMaterial;

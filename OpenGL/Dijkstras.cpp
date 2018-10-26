@@ -39,18 +39,6 @@ void Dijkstras::Sort(std::vector<Node*> graph)
 			}
 		}
 	}
-
-	std::cout << "Dijkstras Done!" << std::endl;
-
-	Node* prevNode = graph[static_cast<int>(graph.size()) - 1];
-	std::cout << prevNode->getId() << "->";
-	float path = 0;
-	while (prevNode->getPrevious() != NULL) {
-		path += prevNode->getDistance();
-		prevNode = prevNode->getPrevious();
-		std::cout << prevNode->getId() << "->";
-	}
-	std::cout << "\nPath Distance: " << path << std::endl;
 }
 
 Node* Dijkstras::lowestDistance(std::vector<Node*> nodes)

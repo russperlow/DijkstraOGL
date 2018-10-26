@@ -105,4 +105,9 @@ int Node::getId()
 	return id;
 }
 
+bool Node::isSpinning()
+{
+	return myGameEntity->isSpinning();
+}
+
 

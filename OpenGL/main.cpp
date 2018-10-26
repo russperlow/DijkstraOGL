@@ -240,8 +240,14 @@ int main() {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
+	// Nodes have been created, search for the best path
 	Dijkstras dijkstra = Dijkstras();
 	dijkstra.Sort(nodes);
+
+	bool shouldSpin = false;
+	std::clock_t start;
+	double duration;
+	start = std::clock();
 
 	// Game loop
 	while (!glfwWindowShouldClose(window)) {
@@ -252,9 +258,43 @@ int main() {
 		Input* input = Input::GetInstance();
 
 		if (input->IsKeyDown(GLFW_KEY_S)) {
-			//for (Node* node : nodes) {
-			//	node->Spin();
-			//}
+			shouldSpin = true;
+		}
+
+		// Get elapsed time
+		duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
+
+		// If the user hit S we should spin
+		if (shouldSpin) {
+
+			// Pause until duration the duration passed is greater than 1
+			if (duration > 1) {
+				
+				// Last node in the vector (our end node)
+				Node* nextToSpin = nodes[static_cast<int>(nodes.size()) - 1];
+
+				// If the last node is already spinning, no need to keep doing this
+				if (!nextToSpin->isSpinning()) {
+
+					// Loop from the last, back to start and spin the next node in the path
+					do {
+
+						Node* prev = nextToSpin->getPrevious();
+
+						// If the previous node is spinning, then it is time for the current one to spin, else move back
+						if (nextToSpin->getPrevious() == NULL || prev->isSpinning()) {
+							nextToSpin->Spin();
+							break;
+						}
+						else{
+							nextToSpin = nextToSpin->getPrevious();
+						}
+					} while (true);
+				}
+
+				// Reset the clock
+				start = std::clock();
+			}
 		}
 
 		// Gameplay update

@@ -21,7 +21,12 @@ GameEntity::~GameEntity()
 }
 
 void GameEntity::SetSpinning(bool shouldSpin) {
-	isSpinning = shouldSpin;
+	spinning = shouldSpin;
+}
+
+bool GameEntity::isSpinning()
+{
+	return spinning;
 }
 
 void GameEntity::Update()
@@ -39,7 +44,7 @@ void GameEntity::Update()
 	if (input->IsKeyDown(GLFW_KEY_LEFT_SHIFT))
 		multiplier = -multiplier;
 
-	if (isSpinning)
+	if (spinning)
 	{
 		eulerAngles.z += 0.001f * multiplier;
 	}

@@ -19,7 +19,7 @@ private:
 	glm::vec3 scale;
 
 	glm::mat4 worldMatrix;
-	bool isSpinning = false;
+	bool spinning = false;
 public:
 	/// <summary>
 	/// Basic paramterized constructor for most of our private vars
@@ -47,5 +47,7 @@ public:
 	/// </summary>
 	void Render(Camera* camera);
 	void SetSpinning(bool);
+
+	bool isSpinning();
 };
 
