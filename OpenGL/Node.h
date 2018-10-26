@@ -15,7 +15,17 @@ public:
 	void Spin();
 	void Reset();
 	void Render(Camera*);
+
 	void setNeighbors(std::vector<Node*>);
+	std::vector<Node*> getAllNeighbors();
+	float getDistance();
+	void setDistance(float);
+	Node* getPrevious();
+	void setPrevious(Node*);
+
+	float getX();
+	float getY();
+	int getId();
 private:
 	Mesh* myMesh;
 	Material* myMaterial;
@@ -25,5 +35,6 @@ private:
 	Node* nearestNeighbor;
 	float x, y;
 	int id;
+	float distance;
 };
 

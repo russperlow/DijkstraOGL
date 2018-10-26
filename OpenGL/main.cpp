@@ -20,9 +20,59 @@
 #include "Input.h"
 #include "Shapes.h"
 #include "Node.h"
+#include "Dijkstras.h"
 
 #include <cstdlib>
 #include <ctime>
+
+float getX(int cubeCount, int w, int i) {
+	float x = 0;
+
+	// Set the x values based on their position in the list
+	if (i == 0) {
+		x = -w;
+	}
+	else if (i == cubeCount - 1) {
+		x = w;
+	}
+	else if (i == cubeCount / 2 || i == (cubeCount / 2) - 1) {
+		x = 0;
+	}
+	else if (i < cubeCount / 2) {
+		x = -w / 2;
+	}
+	else {
+		x = w / 2;
+	}
+
+	// Slight random devation so the graph isn't always the same
+	float randX = (rand() % 10);
+	randX /= 10;
+	x += randX;
+
+	return x;
+}
+
+float getY(int cubeCount, int h, int i) {
+	float y = 0;
+
+	// Set the y values based on their position in the list
+	if (i == 0 || i == (cubeCount / 2) - 1 || i == cubeCount - 1) {
+		y = 0;
+	}
+	else if (i % 2 == 0) {
+		y = -h;
+	}
+	else {
+		y = h;
+	}
+
+	float randY = (rand() % 10);
+	randY /= 10;
+	y += randY;
+
+	return y;
+}
 
 int main() {
 
@@ -121,45 +171,43 @@ int main() {
 
 	// Create 8 cubes, meshes, materials & game entites
 	for (int i = 0; i < cubeCount; i++) {
-		float x = i;
-		float y = i;
+		float x = getX(cubeCount, w, i);
+		float y = getY(cubeCount, h, i);
 
-		// Set the x values based on their position in the list
-		if (i == 0) {
-			x = -w;
-		}
-		else if (i == cubeCount - 1) {
-			x = w;
-		}
-		else if (i == cubeCount / 2 || i == (cubeCount / 2) - 1) {
-			x = 0;
-		}
-		else if (i < cubeCount / 2) {
-			x = -w / 2;
-		}
-		else {
-			x = w / 2;
-		}
-
-		// Set the y values based on their position in the list
-		if (i == 0 || i == (cubeCount / 2) - 1 || i == cubeCount - 1) {
+		switch (i) {
+		case 0:
+			x = -10.0f;
+			y = 0.0f;
+			break;
+		case 1:
+			x = -5.0f;
+			y = 5.3f;
+			break;
+		case 2:
+			x = -4.4f;
+			y = -4.4f;
+			break;
+		case 3:
+			x = 0.6f;
+			y = 0.2f;
+			break;
+		case 4:
+			x = 0.3f;
+			y = -4.2f;
+			break;
+		case 5:
+			x = 5.2f;
+			y = 5.8f;
+			break;
+		case 6:
+			x = 5.3f;
+			y = -4.2f;
+			break;
+		case 7:
+			x = 10;
 			y = 0;
+			break;
 		}
-		else if (i % 2 == 0) {
-			y = -h;
-		}
-		else {
-			y = h;
-		}
-
-		// Slight random devation so the graph isn't always the same
-		float randX = (rand() % 10);
-		float randY = (rand() % 10);
-		randX /= 10;
-		randY /= 10;
-		std::cout << "RandX: " << randX << " RandY: " << randY << std::endl;
-		x += randX;
-		y += randY;
 
 		Node* node = new Node(shaderProgram, x, y, i);
 		nodes.push_back(node);
@@ -192,6 +240,9 @@ int main() {
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
+	Dijkstras dijkstra = Dijkstras();
+	dijkstra.Sort(nodes);
+
 	// Game loop
 	while (!glfwWindowShouldClose(window)) {
 
@@ -201,9 +252,9 @@ int main() {
 		Input* input = Input::GetInstance();
 
 		if (input->IsKeyDown(GLFW_KEY_S)) {
-			for (Node* node : nodes) {
-				node->Spin();
-			}
+			//for (Node* node : nodes) {
+			//	node->Spin();
+			//}
 		}
 
 		// Gameplay update

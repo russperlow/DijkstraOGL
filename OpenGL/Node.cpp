@@ -64,3 +64,45 @@ void Node::setNeighbors(std::vector<Node*> _neighbors)
 {
 	neighbors = _neighbors;
 }
+
+std::vector<Node*> Node::getAllNeighbors()
+{
+	return neighbors;
+}
+
+void Node::setDistance(float _distance)
+{
+	distance = _distance;
+}
+
+float Node::getDistance()
+{
+	return distance;
+}
+
+Node* Node::getPrevious()
+{
+	return nearestNeighbor;
+}
+
+void Node::setPrevious(Node* _nearestNeighbor)
+{
+	nearestNeighbor = _nearestNeighbor;
+}
+
+float Node::getX()
+{
+	return x;
+}
+
+float Node::getY()
+{
+	return y;
+}
+
+int Node::getId()
+{
+	return id;
+}
+
+
