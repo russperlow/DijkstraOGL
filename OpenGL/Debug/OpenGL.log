@@ -1,5 +1,7 @@
-﻿  main.cpp
+﻿  Node.cpp
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\crtdbg.h(302): warning C4005: '_malloca': macro redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\malloc.h(121): note: see previous definition of '_malloca'
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\admin\Documents\DSA2\E3\Debug\vc120.pdb'; linking object as if no debug info
-  OpenGL.vcxproj -> C:\Users\admin\Documents\DSA2\E3\Debug\OpenGL.exe
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\admin\Documents\DSA2\DijkstraOGL\Debug\vc120.pdb'; linking object as if no debug info
+  OpenGL.vcxproj -> C:\Users\admin\Documents\DSA2\DijkstraOGL\Debug\OpenGL.exe

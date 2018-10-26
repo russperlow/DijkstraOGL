@@ -19,6 +19,7 @@
 #include "GameEntity.h"
 #include "Input.h"
 #include "Shapes.h"
+#include "Node.h"
 
 int main() {
 
@@ -107,49 +108,21 @@ int main() {
 	std::cout << "Shaders compiled attached, and linked!" << std::endl;
 #endif // _DEBUG
 
-	// Init the mesh
-	Shapes shapes = Shapes();
 
-	std::vector<GLfloat*> shapeVerts;
-	std::vector<Mesh*> meshes;
-	std::vector<Material*> materials;
-	std::vector<GameEntity*> gameEntities;
-	int cubeCount = 1;
+	std::vector<Node*> nodes;
+	int cubeCount = 8;
 
 	// Create 8 cubes, meshes, materials & game entites
 	for (int i = 0; i < cubeCount; i++) {
-		// Cubes
-		GLfloat cube[CUBE_COUNT];
-		shapes.getCube(0, 0, 0, 1, 1, 1, cube);
-		shapeVerts.push_back(cube);
-
-		// Meshes
-		Mesh* myMesh = new Mesh();
-		myMesh->InitWithVertexArray(cube, _countof(cube), shaderProgram);
-		meshes.push_back(myMesh);
-
-		// Material
-		Material* myMaterial = new Material(shaderProgram);
-		materials.push_back(myMaterial);
-
-		float x = 0;
-		float y = 0;
-
-
-		// Game Entity
-		GameEntity* myGameEntity = new GameEntity(
-			myMesh,
-			myMaterial,
-			glm::vec3(x, y, 0.0f),
-			glm::vec3(0.0f, 0.0f, 0.0f),
-			glm::vec3(1.0f, 1.0f, 1.0f)
-		);
-		gameEntities.push_back(myGameEntity);
+		float x = i;
+		float y = i;
+		Node* node = new Node(shaderProgram, x, y);
+		nodes.push_back(node);
 	}
 	
 	// Our camera
 	Camera* myCamera = new Camera(
-		glm::vec3(0.0f, 0.0f, -5.0f), // Position of the camera
+		glm::vec3(0.0f, 0.0f, -15.0f), // Position of the camera
 		glm::vec3(0.0f, 0.0f, 1.0f), // The 'forward' of the camera
 		glm::vec3(0.0f, 1.0f, 0.0f), // 'Up' for the camera
 		60.0f, // The field of view in radians
@@ -173,14 +146,14 @@ int main() {
 		Input* input = Input::GetInstance();
 
 		if (input->IsKeyDown(GLFW_KEY_S)) {
-			for (GameEntity* gameEntity : gameEntities) {
-				gameEntity->SetSpinning(true);
+			for (Node* node : nodes) {
+				node->Spin();
 			}
 		}
 
 		// Gameplay update
-		for (GameEntity* gameEntity : gameEntities) {
-			gameEntity->Update();
+		for (Node* node : nodes) {
+			node->Update();
 		}
 		myCamera->Update();
 		
@@ -189,8 +162,8 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Render
-		for (GameEntity* gameEntity : gameEntities) {
-			gameEntity->Render(myCamera);
+		for (Node* node : nodes) {
+			node->Render(myCamera);
 		}
 
 		// Post-Render
@@ -199,23 +172,11 @@ int main() {
 		glfwSwapBuffers(window);
 	}
 
-	// De-allocate our meshes
-	for (Mesh* mesh : meshes) {
-		delete mesh;
+	// De-allocate our nodes
+	for (Node* node : nodes) {
+		delete node;
 	}
-	meshes.clear();
-
-	// De-allocate our materials
-	for (Material* material : materials) {
-		delete material;
-	}
-	materials.clear();
-
-	// De-allocate our game entities
-	for (GameEntity* gameEntity : gameEntities) {
-		delete gameEntity;
-	}
-	gameEntities.clear();
+	nodes.clear();
 
 	delete myCamera;
 	Input::Release();
