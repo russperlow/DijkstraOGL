@@ -116,9 +116,19 @@ int main() {
 	for (int i = 0; i < cubeCount; i++) {
 		float x = i;
 		float y = i;
-		Node* node = new Node(shaderProgram, x, y);
+		Node* node = new Node(shaderProgram, x, y, i);
 		nodes.push_back(node);
 	}
+
+	// Assign the children
+	nodes[0]->setNeighbors(std::vector<Node*>{nodes[1], nodes[2], nodes[3]});
+	nodes[1]->setNeighbors(std::vector<Node*>{nodes[0], nodes[3], nodes[5]});
+	nodes[2]->setNeighbors(std::vector<Node*>{nodes[0], nodes[3], nodes[4]});
+	nodes[3]->setNeighbors(std::vector<Node*>{nodes[0], nodes[1], nodes[2], nodes[4], nodes[5], nodes[6]});
+	nodes[4]->setNeighbors(std::vector<Node*>{nodes[2], nodes[3], nodes[5]});
+	nodes[5]->setNeighbors(std::vector<Node*>{nodes[1], nodes[3], nodes[6], nodes[7]});
+	nodes[6]->setNeighbors(std::vector<Node*>{nodes[3], nodes[4], nodes[5], nodes[7]});
+	nodes[7]->setNeighbors(std::vector<Node*>{nodes[5], nodes[7]});
 	
 	// Our camera
 	Camera* myCamera = new Camera(

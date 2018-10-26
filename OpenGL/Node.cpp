@@ -2,8 +2,11 @@
 
 
 
-Node::Node(GLuint shaderProgram, float _x, float _y)
+Node::Node(GLuint shaderProgram, float _x, float _y, int _id)
 {
+	// The id that represents this node
+	id = _id;
+
 	// Shape variable to create cube
 	Shapes shape = Shapes();
 
@@ -55,4 +58,9 @@ void Node::Reset()
 void Node::Render(Camera* myCamera)
 {
 	myGameEntity->Render(myCamera);
+}
+
+void Node::setNeighbors(std::vector<Node*> _neighbors)
+{
+	neighbors = _neighbors;
 }

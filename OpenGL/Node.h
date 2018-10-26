@@ -9,12 +9,13 @@
 class Node
 {
 public:
-	Node(GLuint, float, float);
+	Node(GLuint, float, float, int);
 	~Node();
 	void Update();
 	void Spin();
 	void Reset();
 	void Render(Camera*);
+	void setNeighbors(std::vector<Node*>);
 private:
 	Mesh* myMesh;
 	Material* myMaterial;
@@ -23,5 +24,6 @@ private:
 	std::vector<Node*> neighbors;
 	Node* nearestNeighbor;
 	float x, y;
+	int id;
 };
 
